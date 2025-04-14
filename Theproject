@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Project Est. 2025 – Coffee Shop Abu Dhabi</title>
+  <style>
+    /* Base Colors */
+    :root {
+      --main-gray: #666666;
+      --main-black: #000000;
+      --main-white: #ffffff;
+      --matcha-green: #7bbf43;
+      --light-brown: #a67c52;
+    }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: var(--main-white);
+      color: var(--main-black);
+      scroll-behavior: smooth;
+    }
+    header {
+      background-color: var(--main-gray);
+      color: var(--main-white);
+      padding: 20px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    header img {
+      max-width: 150px;
+      height: auto;
+    }
+    .container {
+      padding: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    h1, h2 {
+      color: var(--matcha-green);
+    }
+    /* Coffee Customizer Styles */
+    .customizer {
+      background-color: var(--light-brown);
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 30px;
+    }
+    .customizer label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    .customizer select {
+      padding: 10px;
+      margin-bottom: 15px;
+      width: 100%;
+      border: 1px solid var(--main-gray);
+      border-radius: 4px;
+    }
+    .customizer button {
+      background-color: var(--matcha-green);
+      color: var(--main-white);
+      border: none;
+      padding: 15px 20px;
+      font-size: 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .customizer button:hover {
+      background-color: var(--light-brown);
+    }
+    /* Twin Taste Section */
+    .special {
+      background-color: var(--main-gray);
+      color: var(--main-white);
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    /* Call to Order */
+    .call-to-order {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .call-to-order a {
+      background-color: var(--matcha-green);
+      color: var(--main-white);
+      padding: 15px 25px;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+    .call-to-order a:hover {
+      background-color: var(--light-brown);
+    }
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 1.5rem;
+      }
+      .customizer button, .call-to-order a {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <!-- Replace "logo.png" with your actual logo file -->
+    <img src="logo.png" alt="The Project Est. 2025 Logo">
+    <h1>The Project Est. 2025</h1>
+    <p>Coffee Shop, Abu Dhabi</p>
+  </header>
+  
+  <div class="container">
+    <!-- Coffee Customizer Section -->
+    <section class="customizer" id="coffee-customizer">
+      <h2>Create Your Coffee</h2>
+      <form id="coffeeForm">
+        <label for="base">Coffee Base:</label>
+        <select id="base" name="base">
+          <option value="Espresso">Espresso</option>
+          <option value="Americano">Americano</option>
+          <option value="Cappuccino">Cappuccino</option>
+        </select>
+        
+        <label for="milk">Milk Type:</label>
+        <select id="milk" name="milk">
+          <option value="Whole Milk">Whole Milk</option>
+          <option value="Skim Milk">Skim Milk</option>
+          <option value="Soy Milk">Soy Milk</option>
+          <option value="Almond Milk">Almond Milk</option>
+        </select>
+        
+        <label for="flavor">Flavor/Sweetener:</label>
+        <select id="flavor" name="flavor">
+          <option value="None">None</option>
+          <option value="Vanilla">Vanilla</option>
+          <option value="Caramel">Caramel</option>
+          <option value="Hazelnut">Hazelnut</option>
+        </select>
+        
+        <label for="extra">Extras:</label>
+        <select id="extra" name="extra">
+          <option value="None">None</option>
+          <option value="Whipped Cream">Whipped Cream</option>
+          <option value="Cinnamon">Cinnamon</option>
+          <option value="Chocolate Shavings">Chocolate Shavings</option>
+        </select>
+        
+        <button type="button" onclick="buildRecipe()">Build My Coffee</button>
+      </form>
+      
+      <div id="recipeOutput" style="margin-top: 20px; font-size: 1.1rem;"></div>
+    </section>
+    
+    <!-- Special Bundle Section -->
+    <section class="special">
+      <h2>The Twin Taste Bundle</h2>
+      <p>Enjoy our exclusive bundle every March!</p>
+      <p>
+        Includes a special cookie from Cookie Post and a special iced caramel latte crafted with ChatGPT’s secret ingredients.
+      </p>
+    </section>
+    
+    <!-- Call to Order Section -->
+    <section class="call-to-order">
+      <h2>Place Your Order</h2>
+      <!-- Adjust the "tel:" link with your actual phone number -->
+      <a href="tel:+971501234567">Call Now to Order</a>
+      <p>Pickup at The Project Est. 2025 | Orders: orders@theprojectae.com</p>
+    </section>
+  </div>
+  
+  <script>
+    // JavaScript for the coffee customizer
+    function buildRecipe() {
+      var base = document.getElementById("base").value;
+      var milk = document.getElementById("milk").value;
+      var flavor = document.getElementById("flavor").value;
+      var extra = document.getElementById("extra").value;
+      
+      // Build a simple recipe description
+      var recipe = "Your custom coffee recipe: " + base;
+      recipe += " with " + milk;
+      recipe += (flavor !== "None") ? ", flavored with " + flavor : "";
+      recipe += (extra !== "None") ? " and a touch of " + extra : "";
+      recipe += ". Enjoy your personalized brew!";
+      
+      document.getElementById("recipeOutput").innerText = recipe;
+    }
+  </script>
+</body>
+</html>
